@@ -7,7 +7,7 @@ import {tap} from "rxjs/operators";
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
-  styleUrls: ['./employee-list.component.css']
+  styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
 
@@ -24,8 +24,8 @@ export class EmployeeListComponent implements OnInit {
 
   private getAllEmployees() {
     this.getEmployeesObservable = this.employeeService.getAllEmployees()
-      .pipe(tap(allEmployeyes => {
-        console.log(allEmployeyes);
+      .pipe(tap(allEmployees => {
+        console.log(allEmployees);
       }));
   }
 
