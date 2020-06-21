@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Employee } from './employee.model';
-import { EmployeeService } from '../employee.service';
+import {Component, OnInit} from '@angular/core';
+import {Employee} from './employee.model';
+import {EmployeeService} from '../employee.service';
+import {Observable} from "rxjs";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-employee-list',
@@ -9,27 +11,30 @@ import { EmployeeService } from '../employee.service';
 })
 export class EmployeeListComponent implements OnInit {
 
-  allEmployees: Array<Employee> = [];
+  getEmployeesObservable: Observable<Array<Employee>>;
+  addEmployeeObservable: Observable<Employee>;
   userName: string;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService) {
+  }
 
   ngOnInit() {
     this.getAllEmployees();
   }
 
   private getAllEmployees() {
-    this.employeeService.getAllEmployees().subscribe(allEmployeyes => {
-      this.allEmployees = allEmployeyes;
-    });
+    this.getEmployeesObservable = this.employeeService.getAllEmployees()
+      .pipe(tap(allEmployeyes => {
+        console.log(allEmployeyes);
+      }));
   }
 
-  addEmployee(){
-    // alert(this.userName);
-    this.employeeService.addEmployee(this.userName).subscribe(response=>{
+  addEmployee() {
+    this.addEmployeeObservable = this.employeeService.addEmployee(this.userName).pipe(tap(response => {
       console.log(response);
+      this.userName = ''
       this.getAllEmployees();
-    });
+    }));
   }
 
 }

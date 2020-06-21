@@ -1,10 +1,17 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Angular with Nestjs - Awesome!!!
-  </h1>
-</div>
+<nb-layout>
 
-<h3>{{message}}</h3>
+  <nb-layout-header fixed>
+    <!-- Insert header here -->
+    <div class="container mx-auto">
+      <h1>Angular with Nestjs - Awesome!!!</h1></div>
+  </nb-layout-header>
 
-<app-employee-list></app-employee-list>
+  <nb-layout-column>
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+    <!-- Insert footer here -->
+  </nb-layout-footer>
+
+</nb-layout>

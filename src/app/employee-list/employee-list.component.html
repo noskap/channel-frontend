@@ -1,11 +1,20 @@
-<h2>Employee List</h2>
+<nb-card>
 
-<div>
-  <input type="text" [(ngModel)]="userName">
-  <button (click)="addEmployee()">Add Employee</button>
-</div>
-<div>
-  <li *ngFor="let employee of allEmployees">
-    {{employee.name}}
-  </li>
-</div>
+  <nb-card-header>
+
+    <h2>Employee List</h2>
+  </nb-card-header>
+
+  <div>
+    <input type="text" [(ngModel)]="userName">
+    <button (click)="addEmployee()">Add Employee</button>
+  </div>
+
+  <div>
+    <li *ngFor="let employee of getEmployeesObservable | async">
+      {{employee.name}}
+    </li>
+  </div>
+
+</nb-card>
+<ng-container *ngIf="addEmployeeObservable | async"></ng-container>
