@@ -2,9 +2,13 @@
 
   <h2>Employee List</h2>
 
-  <div>
-    <input type="text" [(ngModel)]="userName">
-    <button (click)="addEmployee()">Add Employee</button>
+  <div class="col p-3">
+    <div class="row">
+      <input nbInput type="text" [(ngModel)]="userName">
+    </div>
+    <div class="row py-3">
+      <button nbButton (click)="addEmployee()">Add Employee</button>
+    </div>
   </div>
 
   <div>

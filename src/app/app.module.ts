@@ -2,10 +2,23 @@ import {BrowserModule} from '@angular/platform-browser';
 import {LOCALE_ID, NgModule} from '@angular/core';
 import {HttpClientModule} from "@angular/common/http";
 import {AppComponent} from './app.component';
-import {DEFAULT_THEME, NbLayoutModule, NbThemeModule, NbThemeService} from "@nebular/theme";
+import {
+  DEFAULT_THEME,
+  NbGlobalPhysicalPosition,
+  NbLayoutModule,
+  NbThemeModule,
+  NbThemeService, NbToastrModule,
+  NbToastrService
+} from "@nebular/theme";
 import {SharedModule} from "./utils/shared.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
+const toasterConfig = {
+  position: NbGlobalPhysicalPosition.TOP_RIGHT,
+  duration: 2000,
+  destroyByClick: true,
+  preventDuplicates: true,
+};
 
 @NgModule({
   declarations: [
@@ -18,6 +31,7 @@ import {AppRoutingModule} from './app-routing.module';
     SharedModule,
     AppRoutingModule,
     NbLayoutModule,
+    NbToastrModule.forRoot(toasterConfig),
     NbThemeModule.forRoot({name: 'default'}, [DEFAULT_THEME,
       // COSMIC_THEME, DARK_THEME, CORPORATE_THEME
     ]),

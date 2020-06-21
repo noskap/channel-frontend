@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Employee } from './employee-list/employee.model';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {NbToastrService} from "@nebular/theme";
+import {tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class EmployeeService {
   url = 'https://channel-nest.herokuapp.com/';
   // url = 'http://localhost:3000/';
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private nbToaster: NbToastrService) { }
 
   getAllEmployees(): Observable<Array<Employee>>{
     return this.httpClient.get<Array<Employee>>(this.url);
@@ -21,6 +23,8 @@ export class EmployeeService {
   addEmployee(userName: string): any {
     const newEmployee = new Employee();
     newEmployee.name = userName;
-    return this.httpClient.post(this.url, newEmployee);
+    return this.httpClient.post(this.url, newEmployee).pipe(tap(() => {
+      this.nbToaster.success('Created employee.')
+    }));
   }
 }
