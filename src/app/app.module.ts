@@ -7,12 +7,13 @@ import {
   NbGlobalPhysicalPosition,
   NbLayoutModule,
   NbThemeModule,
-  NbThemeService, NbToastrModule,
-  NbToastrService
+  NbThemeService,
+  NbToastrModule
 } from "@nebular/theme";
 import {SharedModule} from "./utils/shared.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
+
 const toasterConfig = {
   position: NbGlobalPhysicalPosition.TOP_RIGHT,
   duration: 2000,
