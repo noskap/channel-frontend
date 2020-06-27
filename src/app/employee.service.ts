@@ -10,20 +10,19 @@ import {tap} from "rxjs/operators";
 })
 export class EmployeeService {
 
-  allEmployees: Array<Employee> = [];
   url = 'https://channel-nest.herokuapp.com/';
   // url = 'http://localhost:3000/';
 
   constructor(private httpClient:HttpClient, private nbToaster: NbToastrService) { }
 
   getAllEmployees(): Observable<Array<Employee>>{
-    return this.httpClient.get<Array<Employee>>(this.url);
+    return this.httpClient.get<Array<Employee>>(`${this.url}employee/`);
   }
 
   addEmployee(userName: string): any {
     const newEmployee = new Employee();
     newEmployee.name = userName;
-    return this.httpClient.post(this.url, newEmployee).pipe(tap(() => {
+    return this.httpClient.post(`${this.url}employee/`, newEmployee).pipe(tap(() => {
       this.nbToaster.success('Created employee.')
     }));
   }
