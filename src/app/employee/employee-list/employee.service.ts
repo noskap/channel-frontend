@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {NbToastrService} from "@nebular/theme";
 import {tap} from "rxjs/operators";
-import {BaseService} from "../base.service";
+import {BaseService} from "../../base.service";
 import {Employee} from "./employee.model";
 
 @Injectable({
