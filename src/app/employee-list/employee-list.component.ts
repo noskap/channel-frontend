@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Employee} from './employee.model';
-import {EmployeeService} from '../employee.service';
+import {EmployeeService} from './employee.service';
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 

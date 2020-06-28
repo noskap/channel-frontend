@@ -3,14 +3,22 @@ import {DashboardComponent} from "./dashboard.component";
 import {SharedModule} from "../../utils/shared.module";
 import {EmployeeListModule} from "../../employee-list/employee-list.module";
 import {DashboardRoutingModule} from "./dashboard-routing.module";
-import {NbCardModule} from "@nebular/theme";
-import {ChannelsModule} from "../../channels/channels.module";
+import {CreateChannelModule} from "../../channels/create-channel/create-channel.module";
 
 @NgModule({
-  declarations: [DashboardComponent],
-  exports: [DashboardComponent],
+  declarations: [
+    DashboardComponent,
+  ],
+  exports: [
+    DashboardComponent,
+  ],
   providers: [],
-  imports: [SharedModule, EmployeeListModule, DashboardRoutingModule, NbCardModule, ChannelsModule]
+  imports: [
+    SharedModule,
+    DashboardRoutingModule,
+    EmployeeListModule,
+    CreateChannelModule,
+  ]
 })
 export class DashboardModule {
 

@@ -41,3 +41,16 @@ label {
 @each $status in nb-get-statuses() {
   @include text-emphasis-variant(".text-#{$status}", nb-theme(color-#{$status}-default), true);
 }
+
+.pointer {
+  cursor: pointer;
+}
+
+nb-card {
+  min-height: 300px;
+}
+
+nb-action:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 15%;
+}

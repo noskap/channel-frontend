@@ -1,0 +1,10 @@
+<div class="container">
+  <h6>Channel Select</h6>
+  <div *ngFor="let channel of channels | async" class="row">
+    <li (click)="selectChannel(channel)" class="text-capitalize pointer">
+      <a>
+        {{ channel }}
+      </a>
+    </li>
+  </div>
+</div>

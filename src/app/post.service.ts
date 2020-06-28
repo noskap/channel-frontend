@@ -1,7 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-// import {PostModel} from '../models/post.model';
+import {Observable, Subject} from 'rxjs';
 import {BaseService} from './base.service';
 
 @Injectable({
@@ -9,6 +8,8 @@ import {BaseService} from './base.service';
 })
 
 export class PostService extends BaseService<any> {
+  public subject: Subject<any> = new Subject<any>()
+
   constructor(httpClient: HttpClient) {
     super(
       httpClient,
@@ -16,7 +17,14 @@ export class PostService extends BaseService<any> {
     );
   }
 
+  public setChannel(value: string) {
+    this.subject.next(value)
+  }
+
   public createChannel(postObject): Observable<any> {
-    return this.httpClient.post(`${this.baseUrl}/channel/create`, postObject);
+    if (!postObject.userId) {
+      postObject.userId = this.userId;
+    }
+    return this.httpClient.post(`${this.baseUrl}channel/create`, postObject);
   }
 }

@@ -1,0 +1,18 @@
+<ng-container *ngIf="create | async"></ng-container>
+<ng-container *ngIf="selectedUser | async"></ng-container>
+<nb-card>
+  <nb-card-header>
+    <h6>
+      New Channel
+    </h6>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <label class="row">Channel name:</label>
+      <input class="row" nbInput type="text" [(ngModel)]="channelName">
+      <div class="row">
+        <button nbButton class="btn" (click)="createChannel()">Create Channel</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

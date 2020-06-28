@@ -1,18 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {UserService} from "../user.service";
-import {PostService} from "../post.service";
 import {tap} from "rxjs/operators";
 import {Observable} from "rxjs";
+import {UserService} from "../../user.service";
+import {PostService} from "../../post.service";
 
 @Component({
-  selector: 'app-channels',
-  templateUrl: './channels.component.html',
-  styleUrls: ['./channels.component.scss']
+  selector: 'app-create-channel',
+  templateUrl: './create-channel.component.html'
 })
-export class ChannelsComponent implements OnInit {
+export class CreateChannelComponent implements OnInit {
 
-  public channels: Observable<any>;
+  public create: Observable<any>;
 
   public selectedUser: any;
 
@@ -20,29 +19,26 @@ export class ChannelsComponent implements OnInit {
   }
 
   public channelName: string;
-  public selectedChannel: string;
 
   public createChannel(): void {
-    this.postService.createChannel({userId: this.selectedUser.id, channelName: this.channelName})
+    this.create = this.postService.createChannel({userId: undefined, channelName: this.channelName})
       .pipe(tap(res => {
-        window.console.log('channel created', res);
+        // this.getChannels(this.userId)
       }));
   }
 
   public ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(id);
+    // console.log(id);
 
-    if (id) {
-      console.log('userid found');
+    // if (id || this.userId) {
+    // console.log('userid found');
 
-      this.selectUser(id);
+    this.selectUser(id);
 
-      // this.testPosts = this.testPosts.filter(item => item.user === this.selectedUser);
-      this.channels = this.userService.getChannels(id).pipe(tap(channels => {
-        console.log(channels)
-      }));
-    }
+    // this.testPosts = this.testPosts.filter(item => item.user === this.selectedUser);
+    // this.getChannels(id);
+    // }
   }
 
   // public login(user): void {
@@ -52,8 +48,9 @@ export class ChannelsComponent implements OnInit {
   // 	}));
   // }
 
+
   public selectUser(id: string): void {
-    this.selectedUser = this.userService.postDetails(id).pipe(tap(user => {
+    this.selectedUser = this.userService.postDetails(id || this.userService.userId).pipe(tap(user => {
       console.log(user);
     }));
     // this.selectedUser = this.testUsers.reduce((prev, user) => {

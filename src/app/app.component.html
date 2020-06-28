@@ -1,10 +1,19 @@
 <nb-layout>
 
   <nb-layout-header fixed>
-    <!-- Insert header here -->
-    <div class="container mx-auto">
-      <h1>{{title}}</h1></div>
+    <nb-actions class="d-flex" fullWidth>
+      <nb-action (click)="openSidebar()" class="pointer">
+        <nb-icon status="danger" icon="menu-outline"></nb-icon>
+      </nb-action>
+      <nb-action class="mr-auto">
+        <h1>{{title}}</h1>
+      </nb-action>
+    </nb-actions>
   </nb-layout-header>
+
+  <nb-sidebar state="collapsed">
+    <app-channel-list></app-channel-list>
+  </nb-sidebar>
 
   <nb-layout-column>
     <router-outlet></router-outlet>

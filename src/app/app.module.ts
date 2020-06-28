@@ -4,8 +4,11 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppComponent} from './app.component';
 import {
   DEFAULT_THEME,
+  NbActionsModule,
   NbGlobalPhysicalPosition,
+  NbIconModule,
   NbLayoutModule,
+  NbSidebarModule,
   NbThemeModule,
   NbThemeService,
   NbToastrModule
@@ -13,6 +16,8 @@ import {
 import {SharedModule} from "./utils/shared.module";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app-routing.module';
+import {NbEvaIconsModule} from "@nebular/eva-icons";
+import {ChannelListModule} from "./channels/channel-list/channel-list.module";
 
 const toasterConfig = {
   position: NbGlobalPhysicalPosition.TOP_RIGHT,
@@ -33,9 +38,14 @@ const toasterConfig = {
     AppRoutingModule,
     NbLayoutModule,
     NbToastrModule.forRoot(toasterConfig),
+    NbSidebarModule.forRoot(), //if this is your app.module
+    NbEvaIconsModule,
     NbThemeModule.forRoot({name: 'default'}, [DEFAULT_THEME,
       // COSMIC_THEME, DARK_THEME, CORPORATE_THEME
     ]),
+    NbIconModule,
+    NbActionsModule,
+    ChannelListModule,
   ],
   providers: [
     NbThemeService,

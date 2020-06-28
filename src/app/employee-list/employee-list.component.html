@@ -13,7 +13,7 @@
 
   <div>
     <li *ngFor="let employee of getEmployeesObservable | async">
-      {{employee.name}}
+      {{employee.name | slice:0:35}}
     </li>
   </div>
 

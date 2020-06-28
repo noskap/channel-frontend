@@ -15,14 +15,14 @@ export class UserService extends BaseService<any> {
 
   public postLogin(username: string, password: string): Observable<any> {
     if (username && password) {
-      return this.httpClient.post(`${this.baseUrl}/${this.endPoint}/login`, {user: {username, password}});
+      return this.httpClient.post(`${this.baseUrl}${this.endPoint}/login`, {user: {username, password}});
       // .pipe(map(json => this.modelObj.fromItemJson(json)));
     }
     return EMPTY;
   }
 
-  public getChannels(id): any {
+  public getChannels(id = this.userId): any {
     // return
-    return this.httpClient.post(`${this.baseUrl}/channel/channels`, {id});
+    return this.httpClient.post(`${this.baseUrl}channel/channels`, {id});
   }
 }
