@@ -22,19 +22,19 @@ export class EmployeeListComponent implements OnInit {
     this.getAllEmployees();
   }
 
-  private getAllEmployees() {
-    this.getEmployeesObservable = this.employeeService.getAllEmployees()
-      .pipe(tap(allEmployees => {
-        console.log(allEmployees);
-      }));
-  }
-
   addEmployee() {
     this.addEmployeeObservable = this.employeeService.addEmployee(this.userName).pipe(tap(response => {
       console.log(response);
       this.userName = ''
       this.getAllEmployees();
     }));
+  }
+
+  private getAllEmployees() {
+    this.getEmployeesObservable = this.employeeService.getAllEmployees()
+      .pipe(tap(allEmployees => {
+        console.log(allEmployees);
+      }));
   }
 
 }

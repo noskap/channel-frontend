@@ -5,14 +5,15 @@ import {NbToastrService} from "@nebular/theme";
 import {tap} from "rxjs/operators";
 import {BaseService} from "../../base.service";
 import {Employee} from "./employee.model";
+import {RefreshService} from "../../utils/refresh.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService extends BaseService<Employee> {
 
-  constructor(httpClient: HttpClient, private nbToaster: NbToastrService) {
-    super(httpClient, 'employee', nbToaster);
+  constructor(httpClient: HttpClient, private nbToaster: NbToastrService, refreshService: RefreshService) {
+    super(httpClient, 'employee', nbToaster, refreshService);
   }
 
   getAllEmployees(): Observable<Array<Employee>> {

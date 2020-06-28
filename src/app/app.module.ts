@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {
   DEFAULT_THEME,
   NbActionsModule,
+  NbDialogModule,
   NbGlobalPhysicalPosition,
   NbIconModule,
   NbLayoutModule,
@@ -19,6 +20,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {NbEvaIconsModule} from "@nebular/eva-icons";
 import {ChannelListModule} from "./channels/channel-list/channel-list.module";
 
+const modalConfig = {};
 const toasterConfig = {
   position: NbGlobalPhysicalPosition.TOP_RIGHT,
   duration: 2000,
@@ -46,6 +48,7 @@ const toasterConfig = {
     NbIconModule,
     NbActionsModule,
     ChannelListModule,
+    NbDialogModule.forRoot(modalConfig)
   ],
   providers: [
     NbThemeService,

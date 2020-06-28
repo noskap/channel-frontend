@@ -1,11 +1,12 @@
 import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {NbButtonModule, NbInputModule} from '@nebular/theme';
+import {NbButtonModule, NbCardModule, NbInputModule} from '@nebular/theme';
 import {RouterModule} from "@angular/router";
 
 @NgModule({
   exports: [
+    NbCardModule,
     CommonModule,
     FormsModule,
     RouterModule,
@@ -14,6 +15,7 @@ import {RouterModule} from "@angular/router";
     NbInputModule,
   ],
   imports: [
+    NbCardModule,
     CommonModule,
     FormsModule,
     RouterModule,

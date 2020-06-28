@@ -3,7 +3,7 @@
   <nb-layout-header fixed>
     <nb-actions class="d-flex" fullWidth>
       <nb-action (click)="openSidebar()" class="pointer">
-        <nb-icon status="danger" icon="menu-outline"></nb-icon>
+        <nb-icon icon="menu-outline" status="danger"></nb-icon>
       </nb-action>
       <nb-action class="mr-auto">
         <!--<h2>{{title}}</h2>-->
@@ -11,7 +11,7 @@
     </nb-actions>
   </nb-layout-header>
 
-  <nb-sidebar state="collapsed" fixed>
+  <nb-sidebar fixed state="collapsed">
     <app-channel-list></app-channel-list>
   </nb-sidebar>
 

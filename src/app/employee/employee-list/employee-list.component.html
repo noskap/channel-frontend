@@ -4,10 +4,10 @@
 
   <div class="col p-3">
     <div class="row">
-      <input nbInput type="text" [(ngModel)]="userName">
+      <input [(ngModel)]="userName" nbInput type="text">
     </div>
     <div class="row">
-      <button nbButton (click)="addEmployee()">Add Employee</button>
+      <button (click)="addEmployee()" nbButton>Add Employee</button>
     </div>
   </div>
 

@@ -4,14 +4,15 @@ import {HttpClient} from '@angular/common/http';
 import {EMPTY, Observable} from 'rxjs';
 import {BaseService} from "../base.service";
 import {NbToastrService} from "@nebular/theme";
+import {RefreshService} from "../utils/refresh.service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService extends BaseService<any> {
-  constructor(httpClient: HttpClient,private toastrService: NbToastrService) {
-    super(httpClient, 'user', toastrService);
+  constructor(httpClient: HttpClient, private toastrService: NbToastrService, refreshService: RefreshService) {
+    super(httpClient, 'user', toastrService, refreshService);
   }
 
   public postLogin(username: string, password: string): Observable<any> {

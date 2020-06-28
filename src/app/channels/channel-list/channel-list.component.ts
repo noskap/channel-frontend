@@ -3,7 +3,6 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../../user/user.service";
 import {PostService} from "../../post/post.service";
 import {Observable} from "rxjs";
-import {tap} from "rxjs/operators";
 import {NbSidebarService} from "@nebular/theme";
 
 @Component({
@@ -11,10 +10,10 @@ import {NbSidebarService} from "@nebular/theme";
   templateUrl: './channel-list.component.html'
 })
 export class ChannelListComponent implements OnInit {
+  public channels: Observable<any>;
+
   constructor(private route: ActivatedRoute, private userService: UserService, private postService: PostService, private sidebar: NbSidebarService) {
   }
-
-  public channels: Observable<any>;
 
   public ngOnInit(): void {
     this.getChannels()
@@ -26,9 +25,7 @@ export class ChannelListComponent implements OnInit {
   }
 
   public getChannels(id?): void {
-    this.channels = this.userService.getChannels(id).pipe(tap(channels => {
-      console.log(channels)
-    }));
+    this.channels = this.userService.forceRefreshObservable(this.userService.getChannels(id));
   }
 
 }

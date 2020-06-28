@@ -1,21 +1,41 @@
 import {HttpClient} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
-import {EMPTY, Observable} from "rxjs";
+import {EMPTY, Observable, timer} from "rxjs";
 import {BASE_API_URL} from "./utils/constants";
 import {NbToastrService} from "@nebular/theme";
-import {tap} from "rxjs/operators";
+import {finalize, switchMap, tap} from "rxjs/operators";
+import {RefreshService} from "./utils/refresh.service";
 
 
 @Injectable()
 export class BaseService<T> {
-  protected baseUrl: string = BASE_API_URL;
   public userId = '5ef808ab4be8f18e8e4ea2ab'
+  protected baseUrl: string = BASE_API_URL;
 
   constructor(
     protected httpClient: HttpClient,
     @Inject(String) protected endPoint: string,
     protected toasterService: NbToastrService,
+    protected refreshService: RefreshService,
   ) {
+  }
+
+  /**
+   * Forces StateChange to refresh
+   */
+  public forceDataRefresh(): void {
+    this.refreshService.forceDataRefresh(this.endPoint);
+  }
+
+  /**
+   * Takes an observable that will force refresh after 5 seconds or when this.forceDataRefresh() is called
+   * @param observable Observable to refresh
+   * @param initialFinalize Finalize for inner observable
+   */
+  public forceRefreshObservable(observable: Observable<any>, initialFinalize?: () => void): Observable<any> {
+    return timer(0, 5000)
+      .pipe(switchMap(() => this.refreshService.forceRefreshObservable(this.endPoint)),
+        switchMap(() => observable.pipe(finalize(initialFinalize))));
   }
 
   /**

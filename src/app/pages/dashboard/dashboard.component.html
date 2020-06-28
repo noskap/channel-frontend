@@ -1,4 +1,6 @@
 <div class="row">
+  <app-post-list *ngIf="channelSelected | async"
+                 class="col-12 col-lg-6 col-xl-4"></app-post-list>
   <app-create-channel class="col-12 col-lg-6 col-xl-4"></app-create-channel>
   <app-employee-list class="col-12 col-lg-6 col-xl-4"></app-employee-list>
 </div>
