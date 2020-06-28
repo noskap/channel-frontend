@@ -12,7 +12,7 @@ import {Employee} from "./employee.model";
 export class EmployeeService extends BaseService<Employee> {
 
   constructor(httpClient: HttpClient, private nbToaster: NbToastrService) {
-    super(httpClient, 'employee');
+    super(httpClient, 'employee', nbToaster);
   }
 
   getAllEmployees(): Observable<Array<Employee>> {

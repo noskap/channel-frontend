@@ -2,6 +2,8 @@ import {HttpClient} from '@angular/common/http';
 import {Inject, Injectable} from '@angular/core';
 import {EMPTY, Observable} from "rxjs";
 import {BASE_API_URL} from "./utils/constants";
+import {NbToastrService} from "@nebular/theme";
+import {tap} from "rxjs/operators";
 
 
 @Injectable()
@@ -12,6 +14,7 @@ export class BaseService<T> {
   constructor(
     protected httpClient: HttpClient,
     @Inject(String) protected endPoint: string,
+    protected toasterService: NbToastrService,
   ) {
   }
 
@@ -30,7 +33,8 @@ export class BaseService<T> {
    */
   public postCreate(postObject: Object): Observable<any> {
     console.log(postObject);
-    return this.httpClient.post(`${this.baseUrl}${this.endPoint}/create`, postObject);
+    return this.httpClient.post(`${this.baseUrl}${this.endPoint}/create`, postObject)
+      .pipe(tap(() => this.toasterService.success(`${this.endPoint} created.`)));
     // .pipe(map((json: any) => this.modelObj.fromItemJson(json)));
   }
 

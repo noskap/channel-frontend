@@ -6,14 +6,14 @@
     <div class="row">
       <input nbInput type="text" [(ngModel)]="userName">
     </div>
-    <div class="row py-3">
+    <div class="row">
       <button nbButton (click)="addEmployee()">Add Employee</button>
     </div>
   </div>
 
   <div>
     <li *ngFor="let employee of getEmployeesObservable | async">
-      {{employee.name | slice:0:35}}
+      {{employee.name | slice:0:33}}
     </li>
   </div>
 

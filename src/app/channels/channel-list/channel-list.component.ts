@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {UserService} from "../../user.service";
-import {PostService} from "../../post.service";
+import {UserService} from "../../user/user.service";
+import {PostService} from "../../post/post.service";
 import {Observable} from "rxjs";
 import {tap} from "rxjs/operators";
 import {NbSidebarService} from "@nebular/theme";
