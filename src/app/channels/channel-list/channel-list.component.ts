@@ -16,7 +16,7 @@ export class ChannelListComponent implements OnInit {
 
   public channels: Observable<any>;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.getChannels()
   }
 
